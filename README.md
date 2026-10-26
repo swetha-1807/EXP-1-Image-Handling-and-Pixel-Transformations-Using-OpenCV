@@ -39,6 +39,7 @@ Step 10: Display the processed images with suitable titles using Matplotlib.
 ## Program Developed By
 
 Name: SWETHA K 
+
 Register Number: 212224230284
 
 ### Step 1: Import Libraries and Load the Image
@@ -134,7 +135,8 @@ plt.axis('off')
 plt.show()
 ```
 
-<img width="372" height="532" alt="image" src="https://github.com/user-attachments/assets/7f3e8b98-c439-4535-a055-06f40a4a0273" />
+<img width="423" height="521" alt="image" src="https://github.com/user-attachments/assets/7d6c25a1-23ad-443a-8b9b-a8b668bad68c" />
+
 
 
 ### Step 3: Color Space Conversion
@@ -220,51 +222,25 @@ else:
 ### Step 5: Image Resizing
 
 ```
-img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg')
-("Error: Image not found. Check the file path.")
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
+image.shape
 
-else:
-    # Get the original image dimensions
-    height, width = img.shape[:2]
+# Resize the image to half its size
+resized_image = cv2.resize(image, (768 // 2, 600 // 2))  # (new_width, new_height)
 
-    print("Original image dimensions:", width, "x", height)
+# Convert BGR to RGB for displaying with Matplotlib
+resized_image_rgb = cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)
 
-    # Resize the image to half its original size
-    resized_image = cv2.resize(
-        img,
-        (width // 2, height // 2)
-    )
+resized_image_rgb.shape
 
-    # Convert BGR to RGB for displaying with Matplotlib
-    resized_image_rgb = cv2.cvtColor(
-        resized_image,
-        cv2.COLOR_BGR2RGB
-    )
-
-    # Display the resized image dimensions
-    print("Resized image dimensions:", resized_image_rgb.shape)
-
-    # Display the resized image
-    plt.imshow(resized_image_rgb)
-    plt.title("Resized Image (Half Size)")
-    plt.axis("off")
-    plt.show()img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
-
-# Convert BGR to RGB
-img_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-# Add text to the image
-text_img = cv2.putText(img_rgb, "SWETHA K", (2, 60),
-                       cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 10)
-
-# Display the image
-plt.imshow(text_img)
-plt.title("Image with Text")
-plt.axis('off')
+# Display the resized image
+plt.imshow(resized_image_rgb)
+plt.title("Resized Image (Half Size)")
+plt.axis("off")
 plt.show()
 ```
 
-<img width="617" height="577" alt="image" src="https://github.com/user-attachments/assets/cdbf0b1b-5c06-4925-9cb7-39c560ba3268" />
+<img width="651" height="532" alt="image" src="https://github.com/user-attachments/assets/bd2f91c0-760f-4748-84da-2c5520ca2a56" />
 
 
 ### Step 6: Image Cropping
@@ -302,7 +278,9 @@ plt.title("Flipped Vertically")
 plt.axis("off")
 
 ```
-<img width="797" height="545" alt="image" src="https://github.com/user-attachments/assets/b5f542ba-b65a-4619-87f0-fef945762b83" />
+
+<img width="713" height="550" alt="image" src="https://github.com/user-attachments/assets/fe07bc56-bfe6-4781-a52b-1c0148f5d63e" />
+
 
 ```
 img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
