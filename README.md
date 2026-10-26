@@ -44,25 +44,16 @@ Register Number: 212224230284
 ### Step 1: Import Libraries and Load the Image
 
 ```
-.import cv2
+import cv2
 import matplotlib.pyplot as plt
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-# Read the image
-img = cv2.imread(
-    r'C:\Users\admin\Downloads\my photo dipt.jpeg'
-)
+plt.imshow(img_rgb, cmap='viridis')  # You can change 'viridis' to another cmap or use None for RGB images
+plt.title("Original Image")
+plt.axis('off')  # Removes axis ticks and labels
+plt.show()
 
-if img is not None:
-    # Convert BGR to RGB
-    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-    # Display the image
-    plt.imshow(img_rgb)
-    plt.title("Original Image")
-    plt.axis('off')
-    plt.show()
-else:
-    print("Image not found. Please check the file path.")
 ```
 
 <img width="408" height="552" alt="image" src="https://github.com/user-attachments/assets/0487d77d-2de9-4ed7-a7a8-1c47151d9cf5" />
@@ -74,21 +65,13 @@ else:
 #### 2.1 Drawing a Line
 
 ```
-img = cv2.imread(
-    r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
-
-# Convert BGR (OpenCV's default) to RGB (Matplotlib's expected color order)
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+img_rgb.shape
 
 # Draw a line from top-left to bottom-right
-line_img = cv2.line(
-    img_rgb,
-    (0, 0),
-    (width - 1, height - 1),
-    (255, 0, 0),
-    2
-)
-# Display the image
+line_img = cv2.line(img_rgb, (0, 0), (1200, 1600), (255, 0, 0), 5) # cv2.line(image, start_point, end_point, color, thickness)
+
 plt.imshow(line_img, cmap='viridis')  
 plt.title("Image with Line")
 plt.axis('off')  
@@ -101,16 +84,14 @@ plt.show()
 #### 2.2 Drawing a Circle
 
 ```
-img = cv2.imread(
-    r'C:\Users\admin\Downloads\my photo dipt.jpeg'
-)
-
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 # Convert BGR (OpenCV's default) to RGB (Matplotlib's expected color order)
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 img_rgb.shape
 
 circle_img = cv2.circle(img_rgb,(470,600),100,(255,0,0),10) # cv2.circle(image, center, radius, color, thickness)
+
 # Display the image
 plt.imshow(circle_img, cmap='viridis')  
 plt.title("Image with Circle")
@@ -122,19 +103,10 @@ plt.show()
 #### 2.3 Drawing a Rectangle
 
 ```
-image = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg')
-
-# Convert BGR (OpenCV's default) to RGB (Matplotlib's expected color order)
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-# Draw a rectangle around the Whole image
-rectangle_img = cv2.rectangle(
-    img_rgb.copy(),
-    (0, 0),
-    (width - 1, height - 1),
-    (255, 0, 0),
-    10
-)
-# Display the image
+img.shape
+rectangle_img = cv2.rectangle( img_rgb.copy(), (0, 0),(width - 1, height - 1), (255, 0, 0), 10)
 plt.imshow(rectangle_img, cmap='viridis')  
 plt.title("Image with Rectangle")
 plt.axis('off')  
@@ -147,32 +119,28 @@ plt.show()
 #### 2.4 Adding Text
 
 ```
-img = cv2.imread(
-    r'C:\Users\admin\Downloads\my photo dipt.jpeg'
-)
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 
-# Convert BGR (OpenCV's default) to RGB (Matplotlib's expected color order)
-img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+# Convert BGR to RGB
+img_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 # Add text to the image
-text_img = cv2.putText(img_rgb, "OpenCV Drawing", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 10)  ## cv2.putText(image, text, position, font, font_scale, color, thickness)
-
-
+text_img = cv2.putText(img_rgb, "SWETHA K", (2, 60),
+                       cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 10)
 # Display the image
-plt.imshow(text_img, cmap='viridis')  
+plt.imshow(text_img)
 plt.title("Image with Text")
-plt.axis('off')  
+plt.axis('off')
 plt.show()
 ```
+
 <img width="372" height="532" alt="image" src="https://github.com/user-attachments/assets/7f3e8b98-c439-4535-a055-06f40a4a0273" />
 
 
 ### Step 3: Color Space Conversion
 
 ```
-img = cv2.imread(
-    r'C:\Users\admin\Downloads\my photo dipt.jpeg'
-)
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 
 # Check whether the image loaded successfully
 if img is None:
@@ -224,6 +192,7 @@ else:
 
     plt.tight_layout()
     plt.show()
+
 ```
 
 <img width="882" height="602" alt="image" src="https://github.com/user-attachments/assets/002759a1-2f3f-48e4-9aac-c288dd16d5d8" />
@@ -232,11 +201,6 @@ else:
 ### Step 4: Pixel Manipulation
 
 ```
-if img is None:
-    print("Error: Image not loaded. Please check the file path.")
-
-else:
-    # Modify a 300x300 block of pixels to white
     img[475:775, 315:615] = [255, 255, 255]
 
     # Convert BGR to RGB for displaying with Matplotlib
@@ -257,9 +221,7 @@ else:
 
 ```
 img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg')
-# Check whether the image loaded successfully
-if img is None:
-    print("Error: Image not found. Check the file path.")
+("Error: Image not found. Check the file path.")
 
 else:
     # Get the original image dimensions
@@ -286,7 +248,20 @@ else:
     plt.imshow(resized_image_rgb)
     plt.title("Resized Image (Half Size)")
     plt.axis("off")
-    plt.show()
+    plt.show()img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
+
+# Convert BGR to RGB
+img_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+# Add text to the image
+text_img = cv2.putText(img_rgb, "SWETHA K", (2, 60),
+                       cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 10)
+
+# Display the image
+plt.imshow(text_img)
+plt.title("Image with Text")
+plt.axis('off')
+plt.show()
 ```
 
 <img width="617" height="577" alt="image" src="https://github.com/user-attachments/assets/cdbf0b1b-5c06-4925-9cb7-39c560ba3268" />
@@ -317,26 +292,11 @@ plt.show()
 ### Step 7: Image Flipping
 
 ```
-image = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg')
-
-# Flip the image horizontally (left-right)
-flipped_horizontally = cv2.flip(image, 1)
-
-# Convert BGR to RGB for displaying with Matplotlib
-flipped_horizontally_rgb = cv2.cvtColor(flipped_horizontally, cv2.COLOR_BGR2RGB)
-
-# Horizontal flip
-plt.imshow(flipped_horizontally_rgb)
-plt.title("Flipped Horizontally")
-plt.axis("off")
-
-# Flip the image vertically (up-down)
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 flipped_vertically = cv2.flip(image, 0)
 
-# Convert BGR to RGB for displaying with Matplotlib
 flipped_vertically_rgb = cv2.cvtColor(flipped_vertically, cv2.COLOR_BGR2RGB)
 
-# Vertical flip
 plt.imshow(flipped_vertically_rgb)
 plt.title("Flipped Vertically")
 plt.axis("off")
@@ -345,22 +305,12 @@ plt.axis("off")
 <img width="797" height="545" alt="image" src="https://github.com/user-attachments/assets/b5f542ba-b65a-4619-87f0-fef945762b83" />
 
 ```
-image = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg')
-
-# Flip the image horizontally (left-right)
+img = cv2.imread(r'C:\Users\admin\Downloads\my photo dipt.jpeg') 
 flipped_horizontally = cv2.flip(image, 1)
-
-# Convert BGR to RGB for displaying with Matplotlib
-flipped_horizontally_rgb = cv2.cvtColor(
-    flipped_horizontally,
-    cv2.COLOR_BGR2RGB
-)
-
-# Display horizontally flipped image
+flipped_horizontally_rgb = cv2.cvtColor(flipped_horizontally, cv2.COLOR_BGR2RGB)
 plt.imshow(flipped_horizontally_rgb)
 plt.title("Flipped Horizontally")
 plt.axis("off")
-plt.show()
 
 ```
 <img width="372" height="517" alt="image" src="https://github.com/user-attachments/assets/879eb000-346e-4d56-9355-3a57bef20a4c" />
